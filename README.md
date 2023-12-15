@@ -1,8 +1,12 @@
 # Keepix.Wallets.ADA
 
 Library that respects the WalletLibraryInterface.  
-This library is used to create wallets, hold coin and token balances and carry out transactions.  
-  
+This library is used to create wallets, hold coin and token balances and carry out transactions.
+
+----------------------------------------------------------<br/>
+<b>[Warning] No public API found for the moment</b> <br/>
+----------------------------------------------------------<br/>
+
 ```js
 class Wallet {
     constructor({}: {
@@ -25,7 +29,7 @@ class Wallet {
     // returns like 1.01 (Always in readable value)
     getTokenBalance: (tokenAddress: string, walletAddress?: string) => Promise<string>;
 
-   
+
     sendCoinTo: (receiverAddress: string, amount: string) => Promise<{ success: boolean, description: string }>;
     sendTokenTo: (tokenAddress: string, receiverAddress: string, amount: string) => Promise<{ success: boolean, description: string }>;
 }

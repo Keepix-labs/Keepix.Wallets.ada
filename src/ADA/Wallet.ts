@@ -7,7 +7,6 @@ import {
   Unit,
   keepRelevant,
   largestFirst,
-  largestFirstMultiAsset,
   resolvePrivateKey,
 } from '@meshsdk/core'
 import axios, { AxiosInstance } from 'axios'
