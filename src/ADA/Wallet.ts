@@ -169,6 +169,25 @@ export class Wallet {
     }
   }
 
+  public async getTokenInformation(tokenAddress: string) {
+    try {
+      const { data } = await this._axios.get(`assets/${tokenAddress}`)
+
+      return {
+        name: data?.asset_name
+          ? Buffer.from(data.asset_name, 'hex').toString()
+          : undefined,
+        symbol: data?.asset_name
+          ? Buffer.from(data.asset_name, 'hex').toString()
+          : undefined,
+        decimals: data?.metadata?.decimals,
+      }
+    } catch (err) {
+      console.log(err)
+      return undefined
+    }
+  }
+
   // always display the balance in 0 decimals like 1.01 RPL
   public async getTokenBalance(tokenAddress: string, walletAddress?: string) {
     try {
@@ -176,6 +195,8 @@ export class Wallet {
       const amounts = await this.fetchAssetsAmount(
         walletAddress ?? this.getAddress(),
       )
+
+      console.log(await this.getTokenInformation(tokenAddress))
 
       const balance =
         amounts?.find(
@@ -246,6 +267,7 @@ export class Wallet {
   private async fetchAssetMetadata(asset: string) {
     try {
       const { data } = await this._axios.get(`assets/${asset}`)
+
       return data?.metadata
     } catch (err) {
       return undefined
