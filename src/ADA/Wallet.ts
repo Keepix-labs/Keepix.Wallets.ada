@@ -180,7 +180,7 @@ export class Wallet {
         symbol: data?.asset_name
           ? Buffer.from(data.asset_name, 'hex').toString()
           : undefined,
-        decimals: data?.metadata?.decimals,
+        decimals: data?.metadata?.decimals ?? 0,
       }
     } catch (err) {
       console.log(err)

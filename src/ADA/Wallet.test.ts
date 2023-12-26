@@ -54,6 +54,20 @@ describe('basic wallet', () => {
     expect(wallet.getMnemonic()).toBeDefined()
   })
 
+  it('can getTokenInformation', async () => {
+    const wallet = new Wallet({
+      mnemonic,
+      type: 'ada',
+      apiKey: 'preprodbKt0gesKbzVfV2EJx5Sr8h7P36Mbt3ll',
+    })
+
+    expect(
+      await wallet.getTokenInformation(
+        'aa8fb4358cfc9a167738d45d770cc4d777a05d5a2afa7f7840609f1e6c70',
+      ),
+    ).toEqual({ name: 'lp', symbol: 'lp', decimals: 0 })
+  })
+
   it('can getBalance', async () => {
     const wallet = new Wallet({
       mnemonic,
